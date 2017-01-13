@@ -15,6 +15,9 @@ guard let reader = LineReader(path: "/Users/russellgordon/survey_response_all_da
     exit(0); // cannot open file
 }
 
+// Structures used to process data
+var columnDescriptors : [String] = []
+
 // Iterate over each line in the file and print to the terminal
 for (number, line) in reader.enumerated() {
     
@@ -23,7 +26,7 @@ for (number, line) in reader.enumerated() {
         
         // Get an array of all the information on the first line
         // "Explode" the string into an array of smaller strings using a comma as a delimiter
-        let columnDescriptors = line.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).components(separatedBy: ",")
+        columnDescriptors = line.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).components(separatedBy: ",")
         
         // Iterate over the array of column headers and print to the console
         for (column, descriptor) in columnDescriptors.enumerated() {
@@ -31,5 +34,20 @@ for (number, line) in reader.enumerated() {
         }
         
     }
+    
 }
+
+// Open an output file for writing, overwriting any existing data
+guard let writer = LineWriter(path: "/Users/russellgordon/survey_output.txt", appending: false) else {
+    print("Cannot open output file")
+    exit(0); // cannot open output file
+}
+
+// Iterate over the array of column headers and print each element to the output file
+for (column, descriptor) in columnDescriptors.enumerated() {
+    writer.write(line: "column \(column) : \(descriptor)")
+}
+
+// Close the output file
+writer.close()
 
