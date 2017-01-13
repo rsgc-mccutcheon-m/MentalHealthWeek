@@ -11,12 +11,25 @@ import Foundation
 // Read the text file (place in your home folder)
 // Path will probably be /Users/student/survey_response_sample.txt
 // Obtain the data file on Haiku, Day 37
-guard let reader = LineReader(path: "/Users/russellgordon/survey_response_sample.txt") else {
+guard let reader = LineReader(path: "/Users/russellgordon/survey_response_all_data_combined_headers.csv") else {
     exit(0); // cannot open file
 }
 
 // Iterate over each line in the file and print to the terminal
 for (number, line) in reader.enumerated() {
-    print("line \(number) >" + line.trimmingCharacters(in: .whitespacesAndNewlines))
+    
+    // Look for first line and build an array of column descriptors
+    if number == 0 {
+        
+        // Get an array of all the information on the first line
+        // "Explode" the string into an array of smaller strings using a comma as a delimiter
+        let columnDescriptors = line.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).components(separatedBy: ",")
+        
+        // Iterate over the array of column headers and print to the console
+        for (column, descriptor) in columnDescriptors.enumerated() {
+            print("column \(column) : \(descriptor)")
+        }
+        
+    }
 }
 
