@@ -16,7 +16,7 @@ guard let reader = LineReader(path: "/Users/russellgordon/survey_response_sample
 }
 
 // Iterate over each line in the file and print to the terminal
-for line in reader {
-    print(">" + line.trimmingCharacters(in: .whitespacesAndNewlines))
+for (number, line) in reader.enumerated() {
+    print("line \(number) >" + line.trimmingCharacters(in: .whitespacesAndNewlines))
 }
 
