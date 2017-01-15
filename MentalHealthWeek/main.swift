@@ -8,21 +8,56 @@
 
 import Foundation
 
+
+struct Student {
+    
+    var grade : Int
+    var advisor : String
+    var email : String
+    var monday :  String
+    var tuesday : String
+    var wednesday : String
+    var thursday : String
+    var friday : String
+    
+    init(grade : Int, advisor : String, email : String, monday : String, tuesday : String, wednesday : String, thursday : String, friday : String) {
+        self.grade = grade
+        self.advisor = advisor
+        self.email = email
+        self.monday = monday
+        self.tuesday = tuesday
+        self.wednesday = wednesday
+        self.thursday = thursday
+        self.friday = friday
+    }
+    
+    
+    
+    
+    
+    
+    
+}
+
+
+
 // Read the text file (place in your home folder)
 // Path will probably be /Users/student/survey_response_sample.txt
 // Obtain the data file on Haiku, Day 37
-guard let reader = LineReader(path: "/Users/russellgordon/survey_response_all_data_combined_headers.csv") else {
+guard let reader = LineReader(path: "/Users/student/survey_response_all_data_combined_headers.csv") else {
     exit(0); // cannot open file
 }
 
 // Structures used to process data
 var columnDescriptors : [String] = []
 
+//print(reader.enumerated())
+
 // Iterate over each line in the file and print to the terminal
 for (number, line) in reader.enumerated() {
     
     // Look for first line and build an array of column descriptors
-    if number == 0 {
+    if number == 2 {
         
         // Get an array of all the information on the first line
         // "Explode" the string into an array of smaller strings using a comma as a delimiter
@@ -38,7 +73,7 @@ for (number, line) in reader.enumerated() {
 }
 
 // Open an output file for writing, overwriting any existing data
-guard let writer = LineWriter(path: "/Users/russellgordon/survey_output.txt", appending: false) else {
+guard let writer = LineWriter(path: "/Users/student/survey_output.txt", appending: false) else {
     print("Cannot open output file")
     exit(0); // cannot open output file
 }
