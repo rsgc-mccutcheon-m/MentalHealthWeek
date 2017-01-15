@@ -32,12 +32,28 @@ struct Student {
     }
     
     
-    
-    
-    
-    
-    
 }
+    struct Activity {
+        
+        var maxCount : Int
+        var currentCount : Int
+        var name : String
+        var attending = [String]()
+        init(maxCount : Int, currentCount : Int, name : String) {
+            self.maxCount = maxCount
+            self.currentCount = currentCount
+            self.name = name
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+
 
 
 
@@ -65,7 +81,10 @@ for (number, line) in reader.enumerated() {
         
         // Iterate over the array of column headers and print to the console
         for (column, descriptor) in columnDescriptors.enumerated() {
+            //Columns apear to be accesed by int values, so a conditional checking column value is a good way to extract a specific descriptor
+            
             print("column \(column) : \(descriptor)")
+            
         }
         
     }
