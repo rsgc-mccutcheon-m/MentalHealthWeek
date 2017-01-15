@@ -47,19 +47,24 @@ struct Activity {
     
 }
 
+var studentEmail : String
+var studentGrade : String
+var studentAdvisor : String
+var studentActivities : [String] = []
+
 var students : [Student] = []
 
 var descriptorLookup : [String] = []
 
-var activities : [Activity] = [
-    Activity(maxCount: 160, currentCount: 0, name: "Breakfast"),
-    Activity(maxCount: 40, currentCount: 0, name: "Gym"),
-   Activity(maxCount: 20, currentCount: 0, name: "Yoga"),
-   Activity(maxCount: 30, currentCount: 0, name: "Academics"),
-    Activity(maxCount: 16, currentCount: 0, name: "Animals"),
-    Activity(maxCount: 160, currentCount: 0, name: "Relaxation"),
-    Activity(maxCount: 12, currentCount: 0, name: "Massage"),
-   Activity(maxCount: 500, currentCount: 0, name: "Sleep")
+var activities : [ String : Activity] = [
+    "Breakfast": Activity(maxCount: 160, currentCount: 0, name: "Breakfast"),
+    "Gym" : Activity(maxCount: 40, currentCount: 0, name: "Gym"),
+    "Yoga" : Activity(maxCount: 20, currentCount: 0, name: "Yoga"),
+    "Academics" : Activity(maxCount: 30, currentCount: 0, name: "Academics"),
+    "Animals" : Activity(maxCount: 16, currentCount: 0, name: "Animals"),
+    "Relaxation" : Activity(maxCount: 160, currentCount: 0, name: "Relaxation"),
+    "Massage" : Activity(maxCount: 12, currentCount: 0, name: "Massage"),
+    "Sleep" : Activity(maxCount: 500, currentCount: 0, name: "Sleep")
 ]
 
 //MARK: Sorting Function
@@ -145,7 +150,27 @@ func getgrade9 (columnDescriptors : [String] ) {
         "Maaage" : Int(columnDescriptors[38])!
     ]
     
-    
+    for (activity, rank) in monday {
+        
+        if rank == 1 {
+            
+            if activities[activity]!.currentCount < activities[activity]!.maxCount {
+               
+                activities[activity]!.attending.append(studentEmail)
+                activities[activity]!.currentCount += 1
+                studentActivities.append(activities[activity]!.name)
+                
+            } else {
+              
+               
+                
+                
+            }
+            
+        }
+        
+        
+    }
     
     
 }
